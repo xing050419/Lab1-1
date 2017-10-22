@@ -17,9 +17,10 @@ public class Graph<T> {
     verticies = new ArrayList<Vertex<T>>();
     edges = new ArrayList<Edge<T>>();
   }
+  
   public ArrayList<String> bridgeword(Vertex<T> from,Vertex<T> to){
     ArrayList<String> store = new ArrayList<String>();
-    for(int i = 0;i<edges.size();i++){
+    for(int i = 0 ; i<edges.size() ; i++) {
       if(edges.get(i).getFrom() == from){
         for(int x = 0;x<edges.get(i).getTo().outgoingEdges.size();x++){
           Edge<T> bridge = edges.get(i).getTo().outgoingEdges.get(x);
@@ -33,10 +34,11 @@ public class Graph<T> {
   }
 
 
-  public String rand_go(Vertex<T> start){
-	 String out = "";
+  public  final String rand_go(Vertex<T> start) {
+  //zhushi
+    String out = "";
     Vertex<T> now = start;
-    ArrayList<String> path = new ArrayList<String>();
+    final ArrayList<String> path = new ArrayList<String>();
     while(!now.outgoingEdges.isEmpty()){
        Random rand = new Random();
        Vertex<T> next  = now.outgoingEdges.get(rand.nextInt(now.outgoingEdges.size())).getTo();
@@ -80,7 +82,7 @@ public class Graph<T> {
   public List<Vertex<T>> getVerticies() {
     return this.verticies;
   }
-  /*引入cost权重,允许边的权重叠加,先找到from的点和*/
+  /*寮曞叆cost鏉冮噸,鍏佽杈圭殑鏉冮噸鍙犲姞,鍏堟壘鍒癴rom鐨勭偣鍜�*/
   public boolean addEdge(Vertex<T> from, Vertex<T> to, int cost) throws IllegalArgumentException {
     if (verticies.contains(from) == false)
       throw new IllegalArgumentException("from is not in graph");
@@ -354,6 +356,7 @@ class Edge<T> {
     return tmp.toString();
   }
 }
+
 class Vertex<T> {
   public List<Edge<T>> incomingEdges;
 
@@ -375,14 +378,15 @@ class Vertex<T> {
   }
 
   /**
-   * Create a vertex with the given name and no data
+   * Create a vertex with the given name and no data.
    *
    * @param n
    */
   public Vertex(String n) {
     this(n, null);
   }
-  public Vertex(String n, T data) {
+  
+  public Vertex(String n , T data) {
     incomingEdges = new ArrayList<Edge<T>>();
     outgoingEdges = new ArrayList<Edge<T>>();
     name = n;

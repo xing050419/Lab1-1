@@ -23,21 +23,21 @@ import javax.swing.JTextField;
 
 public class Panel extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	private JLabel seg_start_label, seg_end_label, seg_gain_label;
-	private JTextField seg_start_text, seg_end_text, seg_gain_text;
-	private JButton solve_button, next_button;
-	private JButton random_go,shortest_path,change_text;
-	private JTextField pathof;
-	private JPanel drawPanel;
-	private int width, height;
-	Graph<String> mygraph;
-	HashMap<String,Vertex<String>> mapt;
-	HashMap<String,Integer> vton;
+  private static final long serialVersionUID = 1L;
+  private JLabel seg_start_label, seg_end_label, seg_gain_label;
+  private  JTextField seg_start_text, seg_end_text, seg_gain_text;
+  private  JButton solve_button, next_button;
+  private  JButton random_go,shortest_path,change_text;
+  private JTextField pathof;
+  private JPanel drawPanel;
+  private int width, height;
+  Graph<String> mygraph;
+  HashMap<String,Vertex<String>> mapt;
+  HashMap<String,Integer> vton;
 
-	Panel(Graph<String> gr,HashMap<String,Vertex<String>> mmp) {
-		initialize();
-		mygraph = gr;
+  Panel(Graph<String> gr,HashMap<String,Vertex<String>> mmp) {
+    initialize();
+    mygraph = gr;
 		mapt = mmp;
 		vton = new HashMap<String,Integer>();
 		for(int i = 0;i<mygraph.verticies.size();i++){
@@ -49,62 +49,59 @@ public class Panel extends JFrame {
             ps.println(vton.toString());  
         } catch (FileNotFoundException e) {  
             // TODO Auto-generated catch block  
-            e.printStackTrace();  
-        }  
-	}
+      e.printStackTrace();  
+    }  
+  }
 
-	private void initialize() {
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		width = (int) screenSize.getWidth() - 120;
-		height = (int) screenSize.getHeight() - 120;
-		Data.width = width;
-		Data.height = height;
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, width, height);
-		setTitle("Word Graph plot");
-		setLayout(null);
-		setResizable(true);
+  private void initialize() {
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    width = (int) screenSize.getWidth() - 120;
+    height = (int) screenSize.getHeight() - 120;
+    Data.width = width;
+    Data.height = height;
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    setBounds(0, 0, width, height);
+    setTitle("Word Graph plot");
+    setLayout(null);
+    setResizable(true);
 
-		seg_start_label = new JLabel("from node #");
-		seg_start_label.setBounds(60, height - 120, 160, 50);
-		seg_start_text = new JTextField();
-		seg_start_text.setBounds(60, height - 60, 160, 50);
+    seg_start_label = new JLabel("from node #");
+    seg_start_label.setBounds(60, height - 120, 160, 50);
+    seg_start_text = new JTextField();
+    seg_start_text.setBounds(60, height - 60, 160, 50);
 
-		seg_end_label = new JLabel("to node #");
-		seg_end_label.setBounds(240, height - 120, 160, 50);
-		seg_end_text = new JTextField();
-		seg_end_text.setBounds(220, height - 60, 160, 50);
+    seg_end_label = new JLabel("to node #");
+    seg_end_label.setBounds(240, height - 120, 160, 50);
+    seg_end_text = new JTextField();
+    seg_end_text.setBounds(220, height - 60, 160, 50);
 
-		seg_gain_label = new JLabel("bridge_word");
-		seg_gain_label.setBounds(420, height - 120, 360, 50);
-		seg_gain_text = new JTextField();
-		seg_gain_text.setBounds(380, height - 60, 360, 50);
+    seg_gain_label = new JLabel("bridge_word");
+    seg_gain_label.setBounds(420, height - 120, 360, 50);
+    seg_gain_text = new JTextField();
+    seg_gain_text.setBounds(380, height - 60, 360, 50);
 
-		drawPanel = new Draw();
-		drawPanel.setBounds(0, 0, width, height - 120);
-		drawPanel.setBackground(Color.WHITE);
+    drawPanel = new Draw();
+    drawPanel.setBounds(0, 0, width, height - 120);
+    drawPanel.setBackground(Color.WHITE);
 
-		next_button = new JButton("plot words");
-		next_button.setBounds(760, height - 120, 250, 50);
-		solve_button = new JButton("check bridge");
-		solve_button.setBounds(760, height - 60, 250, 50);
-		
-		random_go = new JButton("random_go");
-		random_go.setBounds(1100,height-60,250,50);
-		shortest_path = new JButton("shortest_path");
-		shortest_path.setBounds(1100,height-120,250,50);
-		change_text = new JButton("change_text");
-		change_text.setBounds(1400,height-120,250,50);
-		pathof = new JTextField();
-		pathof.setBounds(1400,height-60,250,50);
-		
-		
-		
-		
+    next_button = new JButton("plot words");
+    next_button.setBounds(760, height - 120, 250, 50);
+    solve_button = new JButton("check bridge");
+    solve_button.setBounds(760, height - 60, 250, 50);
+    
+    random_go = new JButton("random_go");
+    random_go.setBounds(1100,height - 60,250,50);
+    shortest_path = new JButton("shortest_path");
+    shortest_path.setBounds(1100,height - 120,250,50);
+    change_text = new JButton("change_text");
+    change_text.setBounds(1400,height - 120,250,50);
+    pathof = new JTextField();
+    pathof.setBounds(1400,height - 60,250,50);
 
-		solve_button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String start = seg_start_text.getText();
+
+    solve_button.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent arg0) {
+    	  String start = seg_start_text.getText();
 				String end = seg_end_text.getText();
 				ArrayList<String> result = mygraph.bridgeword(mapt.get(start),mapt.get(end));
 				String out  = "";
@@ -202,7 +199,7 @@ public class Panel extends JFrame {
 				String begin = seg_start_text.getText();
 				String end = seg_end_text.getText();
 				String out = "";
-				 shortestpath<String> ss = new shortestpath<String>(mapt.get(begin),mygraph);
+				 Shortestpath<String> ss = new Shortestpath<String>(mapt.get(begin),mygraph);
 				 if(!end.equals("")){
 				     LinkedList<Vertex<String>> path = ss.getpath(mapt.get(end));
 				     for (int i = 0;i<path.size();i++){
@@ -237,33 +234,32 @@ public class Panel extends JFrame {
 		
 
 
-		Font font = new Font("Serif", Font.PLAIN, 24);
-		seg_start_label.setFont(font);
-		seg_end_label.setFont(font);
-		seg_gain_label.setFont(font);
-		seg_start_text.setFont(font);
-		seg_end_text.setFont(font);
-		seg_gain_text.setFont(font);
-		next_button.setFont(font);
-		solve_button.setFont(font);
-		random_go.setFont(font);
-		shortest_path.setFont(font);
-		change_text.setFont(font);
-		pathof.setFont(font);
+    Font font = new Font("Serif", Font.PLAIN, 24);
+    seg_start_label.setFont(font);
+    seg_end_label.setFont(font);
+    seg_gain_label.setFont(font);
+    seg_start_text.setFont(font);
+    seg_end_text.setFont(font);
+    seg_gain_text.setFont(font);
+    next_button.setFont(font);
+    solve_button.setFont(font);
+    random_go.setFont(font);
+    shortest_path.setFont(font);
+    change_text.setFont(font);
+    pathof.setFont(font);
 
-		getContentPane().add(seg_start_label);
-		getContentPane().add(seg_end_label);
-		getContentPane().add(seg_gain_label);
-		getContentPane().add(seg_start_text);
-		getContentPane().add(seg_end_text);
-		getContentPane().add(seg_gain_text);
-		getContentPane().add(drawPanel);
-		getContentPane().add(solve_button);
-		getContentPane().add(next_button);
-		getContentPane().add(random_go);
-		getContentPane().add(shortest_path);
-		getContentPane().add(change_text);
-		getContentPane().add(pathof);
-		
-	}
+    getContentPane().add(seg_start_label);
+    getContentPane().add(seg_end_label);
+    getContentPane().add(seg_gain_label);
+    getContentPane().add(seg_start_text);
+    getContentPane().add(seg_end_text);
+    getContentPane().add(seg_gain_text);
+    getContentPane().add(drawPanel);
+    getContentPane().add(solve_button);
+    getContentPane().add(next_button);
+    getContentPane().add(random_go);
+    getContentPane().add(shortest_path);
+    getContentPane().add(change_text);
+    getContentPane().add(pathof);
+  }
 }
